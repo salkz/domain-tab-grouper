@@ -1,0 +1,10 @@
+{
+  "name": "domain-tab-grouper",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "test": "node --test test/",
+    "package": "rm -f dist/domain-tab-grouper.zip && mkdir -p dist && zip -r dist/domain-tab-grouper.zip manifest.json src icons"
+  }
+}

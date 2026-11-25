@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Domain Tab Grouper</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header>
+    <h1>Domain Tab Grouper</h1>
+    <label class="switch" title="Group tabs automatically">
+      <input type="checkbox" id="enabled">
+      <span>On</span>
+    </label>
+  </header>
+
+  <section>
+    <label for="mode">Group by</label>
+    <select id="mode">
+      <option value="base">Site (mail.google.com + docs.google.com together)</option>
+      <option value="host">Exact host (mail.google.com, docs.google.com apart)</option>
+    </select>
+
+    <label for="minTabs">Make a group once a site has</label>
+    <div class="inline">
+      <input type="number" id="minTabs" min="1" max="20"> <span>tabs open in a window</span>
+    </div>
+
+    <label class="check"><input type="checkbox" id="stripTld"> Short titles ("github", not "github.com")</label>
+    <label class="check"><input type="checkbox" id="collapseNew"> Collapse new groups in the background</label>
+
+    <label for="excludedText">Never group these domains</label>
+    <textarea id="excludedText" rows="3" placeholder="localhost, mail.google.com"></textarea>
+  </section>
+
+  <footer>
+    <button id="regroup">Regroup all tabs</button>
+    <button id="ungroup" class="secondary">Ungroup all &amp; turn off</button>
+  </footer>
+  <p class="hint">Drag a tab out of a group and it stays out until it moves to another site.</p>
+
+  <script type="module" src="popup.js"></script>
+</body>
+</html>
