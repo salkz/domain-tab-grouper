@@ -1,0 +1,23 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm test
+      - name: Check manifest and package versions match
+        run: |
+          m=$(jq -r .version manifest.json); p=$(jq -r .version package.json)
+          [ "$m" = "$p" ] || { echo "manifest.json $m != package.json $p"; exit 1; }

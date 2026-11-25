@@ -1,0 +1,30 @@
+name: Release
+
+on:
+  push:
+    tags: ['v*']
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+      - run: npm test
+      - name: Check the tag matches manifest.json
+        run: |
+          v=$(jq -r .version manifest.json)
+          [ "v$v" = "$GITHUB_REF_NAME" ] || { echo "tag $GITHUB_REF_NAME != manifest version $v"; exit 1; }
+      - name: Build zip
+        run: |
+          mkdir -p dist
+          zip -r "dist/domain-tab-grouper-${GITHUB_REF_NAME#v}.zip" manifest.json src icons LICENSE
+      - name: Create release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh release create "$GITHUB_REF_NAME" dist/*.zip --generate-notes
