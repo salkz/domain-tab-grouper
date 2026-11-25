@@ -4,6 +4,7 @@
   "version": "1.0.0",
   "description": "Automatically groups tabs by website. No patterns to set up.",
   "minimum_chrome_version": "102",
+  "homepage_url": "https://github.com/salkz/domain-tab-grouper",
   "permissions": ["tabs", "tabGroups", "storage"],
   "background": {
     "service_worker": "src/background.js",

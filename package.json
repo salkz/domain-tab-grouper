@@ -1,10 +1,19 @@
 {
   "name": "domain-tab-grouper",
   "version": "1.0.0",
+  "description": "Chrome extension that groups tabs by website automatically.",
+  "license": "MIT",
   "private": true,
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/salkz/domain-tab-grouper.git"
+  },
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "test": "node --test test/",
-    "package": "rm -f dist/domain-tab-grouper.zip && mkdir -p dist && zip -r dist/domain-tab-grouper.zip manifest.json src icons"
+    "package": "rm -f dist/domain-tab-grouper.zip && mkdir -p dist && zip -r dist/domain-tab-grouper.zip manifest.json src icons LICENSE"
   }
 }
